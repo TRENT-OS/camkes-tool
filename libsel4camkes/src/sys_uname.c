@@ -96,6 +96,8 @@ long camkes_sys_uname(va_list ap)
         plat = "IMX6";
     } else if (config_set(CONFIG_PLAT_WANDQ)) {
         plat = "WANDQ";
+    } else if (config_set(CONFIG_PLAT_NITROGEN6SX)) {
+        plat = "NITROGEN6SX";
     } else if (config_set(CONFIG_PLAT_IMX7_SABRE)) {
         plat = "IMX7";
     } else if (config_set(CONFIG_PLAT_ZYNQ7000)) {
