@@ -726,6 +726,10 @@ def _lift_uint64_t(location, *_):
     return 'uint64_t'
 
 
+def _lift_off_t(location, *_):
+    return 'off_t'
+
+
 def _lift_uses(location, *args):
     if len(args) == 3:
         optional = True
@@ -845,6 +849,7 @@ LIFT = {
     'unsigned_char': _lift_unsigned_char,
     'unsigned_int': _lift_unsigned_int,
     'uint64_t': _lift_uint64_t,
+    'off_t': _lift_off_t,
     'uses': _lift_uses,
     'query': _lift_query,
 }
