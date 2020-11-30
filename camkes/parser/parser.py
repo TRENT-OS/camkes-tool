@@ -29,6 +29,7 @@ import os
 class Parser(BaseParser):
     def __init__(self, options=None):
 
+        print('CAmkES processing of {}'.format(options.file.name))
         # Build the file reader.
         if hasattr(options, 'cpp') and options.cpp:
             if hasattr(options, 'cpp_flag'):

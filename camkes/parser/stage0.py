@@ -40,6 +40,7 @@ class CPP(Parser):
         self.out_dir = os.getcwd()
 
     def parse_file(self, filename):
+        print('CPP parsing {}'.format(filename))
         # Run cpp with -MD to generate dependencies because we want to
         # track what files it read.
         output_basename = os.path.join(self.out_dir, os.path.basename(filename))
