@@ -639,6 +639,8 @@ static void *try_alloc_from_free_region(
          */
         uintptr_t new_chunk_size = p_end - q_end;
         if ((0 != new_chunk_size) && (new_chunk_size < sizeof(region_t))) {
+            ZF_LOGI("region does not qualify: p=%p, q=%p, size %zu",
+                    p, q, size);
             continue;
         }
 
@@ -692,11 +694,16 @@ static void *try_alloc_from_free_list(
     unsigned int align,
     bool cached)
 {
+    ZF_LOGI("DMA alloc %zu (align=%u, cached=%u)", size, align, cached);
+
+
     /* For each region in the free list... */
     for (region_t *prev = NULL, *p = head; p != NULL; prev = p, p = p->next) {
 
         /* Check if region can satisfy the allocation request. */
         if ((p->size < size) || (p->cached != cached)) {
+            ZF_LOGI("region does not match: %p, size %zu, cached %u",
+                    p, p->size, p->cached);
             continue;
         }
 
