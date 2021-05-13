@@ -61,6 +61,8 @@ class FileSystemLoaderWithLog(jinja2.FileSystemLoader):
 
 class Renderer(object):
     def __init__(self, templates):
+        print('Renderer templates: {}'.format(templates))
+
         # This function constructs a Jinja environment for our templates.
 
         self.loaders = []
@@ -86,7 +88,16 @@ class Renderer(object):
         context = new_context(me, assembly, render_state, state_key, outfile_name,
                               **kwargs)
 
-        t = self.env.get_template(template)
+
+
+        t = None
+        try:
+            t = self.env.get_template(template)
+        except Exception as e:
+            print('EXCEPTION {}'.format(e))
+            print('template: {}'.format(template))
+            raise
+
         try:
             return t.render(context)
         except TemplateError:
