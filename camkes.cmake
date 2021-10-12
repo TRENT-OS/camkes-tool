@@ -6,6 +6,9 @@
 
 cmake_minimum_required(VERSION 3.7.2)
 
+# temporary debugging
+include(CMakePrintHelpers)
+
 include(${KERNEL_HELPERS_PATH})
 include(${PLATSUPPORT_HELPERS})
 include(dts)
@@ -530,6 +533,7 @@ function(GenerateCAmkESRootserver)
         file(REMOVE ${CAMKES_AST_PICKLE})
         message(FATAL_ERROR "Failed to generate ${CAMKES_AST_PICKLE}")
     endif()
+    cmake_print_variables(camkes_parse_command)
 
     set(CAMKES_CMAKE_FILE "${CMAKE_CURRENT_BINARY_DIR}/camkes-gen.cmake")
     set(CAMKES_CMAKE_DEP_FILE "${CAMKES_CMAKE_FILE}.d")
@@ -568,6 +572,7 @@ function(GenerateCAmkESRootserver)
         file(REMOVE ${CAMKES_CMAKE_FILE})
         message(FATAL_ERROR "Failed to generate ${CAMKES_CMAKE_FILE}")
     endif()
+    cmake_print_variables(camkes_render_command)
 
     # We set a property to indicate that we have done execute_process (which
     # happens during the generation phase. This just allows us to do some

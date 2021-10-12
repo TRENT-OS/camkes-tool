@@ -25,7 +25,7 @@ set(
     "utils"
     "sel4vka"
     "sel4utils"
-    "sel4bench"
+#    "sel4bench"
     "sel4platsupport"
     "platsupport"
     "sel4vspace"
