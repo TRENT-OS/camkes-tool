@@ -259,15 +259,14 @@ int camkes_virtqueue_device_gather_copy_buffer(virtqueue_device_t *vq, virtqueue
         vq_flags_t flag;
 
         if (camkes_virtqueue_device_gather_buffer(vq, handle, &avail_buf, &buf_size, &flag)) {
-            virtqueue_add_used_buf(vq, handle, sent);
-            return -1;
+            break;
         }
         to_copy = size - sent < buf_size ? size - sent : buf_size;
         memcpy(buffer + sent, avail_buf, to_copy);
         sent += to_copy;
     }
     virtqueue_add_used_buf(vq, handle, sent);
-    return 0;
+    return sent;
 }
 
 int camkes_virtqueue_driver_gather_buffer(virtqueue_driver_t *vq, virtqueue_ring_object_t *handle,
